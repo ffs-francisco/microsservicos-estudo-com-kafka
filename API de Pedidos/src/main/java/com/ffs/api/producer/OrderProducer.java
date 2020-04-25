@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -20,7 +19,7 @@ public class OrderProducer {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    public void send(final @RequestBody String order) {
+    public void send(final String order) {
         final String messageKey = UUID.randomUUID().toString();
 
         this.kafkaTemplate.send(this.TOPIC_ORDER, messageKey, order);
