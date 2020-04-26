@@ -1,5 +1,6 @@
 package com.ffs.api.producer;
 
+import com.ffs.api.model.Order;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +20,7 @@ public class OrderProducer {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    public void send(final String order) {
+    public void send(final Order order) {
         final String messageKey = UUID.randomUUID().toString();
 
         this.kafkaTemplate.send(this.TOPIC_ORDER, messageKey, order);
